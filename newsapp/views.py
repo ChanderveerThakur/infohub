@@ -34,6 +34,14 @@ def fetch_news_from_api(query, page_size=50):
     except Exception:
         # On failure, return empty list (the template shows friendly message)
         return []
+    
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+@login_required(login_url='login')
+def home(request):
+    return render(request, 'newsapp/home.html')
+
 
 def news_home(request):
     """
